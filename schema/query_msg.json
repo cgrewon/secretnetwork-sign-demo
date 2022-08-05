@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "QueryMsg",
+  "anyOf": [
+    {
+      "type": "object",
+      "required": [
+        "get_count"
+      ],
+      "properties": {
+        "get_count": {
+          "type": "object"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "validate"
+      ],
+      "properties": {
+        "validate": {
+          "type": "object",
+          "required": [
+            "permit"
+          ],
+          "properties": {
+            "permit": {
+              "$ref": "#/definitions/CheckSignQuery"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "AmountInFeeInSigned": {
+      "type": "object",
+      "required": [
+        "amount",
+        "denom"
+      ],
+      "properties": {
+        "amount": {
+          "type": "integer",
+          "format": "uint128",
+          "minimum": 0.0
+        },
+        "denom": {
+          "type": "string"
+        }
+      }
+    },
+    "CheckSignQuery": {
+      "type": "object",
+      "required": [
+        "pubkey",
+        "signature",
+        "signed"
+      ],
+      "properties": {
+        "pubkey": {
+          "type": "string"
+        },
+        "signature": {
+          "type": "string"
+        },
+        "signed": {
+          "$ref": "#/definitions/SignedData"
+        }
+      }
+    },
+    "FeeInSigned": {
+      "type": "object",
+      "required": [
+        "amount",
+        "gas"
+      ],
+      "properties": {
+        "amount": {
+          "$ref": "#/definitions/AmountInFeeInSigned"
+        },
+        "gas": {
+          "type": "integer",
+          "format": "uint128",
+          "minimum": 0.0
+        }
+      }
+    },
+    "SignMsg": {
+      "type": "object",
+      "required": [
+        "type",
+        "value"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "SignedData": {
+      "type": "object",
+      "required": [
+        "account_number",
+        "chain_id",
+        "fee",
+        "memo",
+        "msgs",
+        "sequence"
+      ],
+      "properties": {
+        "account_number": {
+          "type": "integer",
+          "format": "uint128",
+          "minimum": 0.0
+        },
+        "chain_id": {
+          "type": "string"
+        },
+        "fee": {
+          "$ref": "#/definitions/FeeInSigned"
+        },
+        "memo": {
+          "type": "string"
+        },
+        "msgs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SignMsg"
+          }
+        },
+        "sequence": {
+          "type": "integer",
+          "format": "uint128",
+          "minimum": 0.0
+        }
+      }
+    }
+  }
+}

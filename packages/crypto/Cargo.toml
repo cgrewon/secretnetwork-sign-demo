@@ -1,0 +1,32 @@
+[package]
+name = "secret-toolkit-crypto"
+version = "0.3.0"
+edition = "2018"
+authors = ["SCRT Labs <info@scrtlabs.com>"]
+license-file = "../../LICENSE"
+repository = "https://github.com/scrtlabs/secret-toolkit"
+readme = "Readme.md"
+description = "Cryptographic tools for writing Secret Contracts"
+categories = ["cryptography::cryptocurrencies", "wasm"]
+keywords = ["secret-network", "secret-contracts", "secret-toolkit"]
+
+[package.metadata.docs.rs]
+all-features = true
+
+[features]
+hash = ["sha2"]
+rand = ["rand_chacha", "rand_core"]
+ecc-secp256k1 = ["secp256k1"]
+
+[dependencies]
+rand_chacha = { version = "0.2.2", default-features = false, optional = true }
+rand_core = { version = "0.5.1", default-features = false, optional = true }
+sha2 = { version = "0.9.1", default-features = false, optional = true }
+secp256k1 = { version = "0.21.3", optional = true }
+cosmwasm-std = { package = "secret-cosmwasm-std", version = "0.10" }
+
+[dev-dependencies]
+secp256k1-test = { package = "secp256k1", version = "0.17", features = [
+    "rand-std",
+    "recovery"
+] }

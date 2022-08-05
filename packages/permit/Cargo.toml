@@ -1,0 +1,24 @@
+[package]
+name = "secret-toolkit-permit"
+version = "0.3.1"
+edition = "2018"
+authors = ["SCRT Labs <info@scrtlabs.com>"]
+license-file = "../../LICENSE"
+repository = "https://github.com/scrtlabs/secret-toolkit"
+readme = "Readme.md"
+description = "Boilerplate for using permits in Secret Contracts"
+categories = ["cryptography::cryptocurrencies", "wasm"]
+keywords = ["secret-network", "secret-contracts", "secret-toolkit"]
+
+[package.metadata.docs.rs]
+all-features = true
+
+[dependencies]
+cosmwasm-std = { package = "secret-cosmwasm-std", version = "0.10.1" }
+
+serde = "1.0"
+ripemd160 = { version = "0.9.1", default-features = false }
+schemars = "0.7"
+bech32 = "0.8.1"
+remain = "0.2.2"
+secret-toolkit-crypto = { version = "0.3.0", path = "../crypto", features=["hash"] }
